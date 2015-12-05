@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<package name="default" namespace="/" extends="json-default">
+
+		<action name="loginAction" class="org.iiitb.facebook.action.LoginAction"
+			method="execute">
+			<result name="home">home.jsp</result>
+			<result name="login">login.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+		
+		<action name="findfriends" class="org.iiitb.facebook.action.FindFriendsAction"
+			method="execute_findfriendspage">
+			<result name="success">findfriends.jsp</result>
+			
+		</action>
+		
+		<action name="peopleyoumayknow_addfriend" class="org.iiitb.facebook.action.FriendRequestAction" method="addFriend_peopleyoumayknow">
+				<result type="json" name="success" />
+		</action>
+		
+		<action name="peopleyoumayknowall_addfriend" class="org.iiitb.facebook.action.FriendRequestAction" method="addFriend_peopleyoumayknow">
+			<result type="json" name="success" />
+		</action>
+		<action name="registerAction" class="org.iiitb.facebook.action.RegistrationAction"
+			method="execute">
+			<result name="success">login.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+		
+		<action name="mailVerificationAction" class="org.iiitb.facebook.action.RegistrationAction"
+			method="verifyMail">
+			<result name="success">login.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+		
+		<action name="logoutAction" class="org.iiitb.facebook.action.LoginAction"
+			method="logout">
+			<result name="success">login.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+		
+		<action name="updatePrivacyAction" class="org.iiitb.facebook.action.UserPostAction"
+			method="updatePrivacySetting">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="updateAlbumPrivacyAction" class="org.iiitb.facebook.action.UserPostAction"
+			method="updateAlbumPrivacySetting">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="updateAllPrivacyAction" class="org.iiitb.facebook.action.UserPostAction"
+			method="updateAllPrivacySetting">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="UserPostAction" class="org.iiitb.facebook.action.UserPostAction"
+			method="postOnWall">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">50971520</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">home.jsp</result>
+			<result name="error">home.jsp</result>
+		</action>
+		
+		<action name="newsFeedAction" class="org.iiitb.facebook.action.NewsFeedAction"
+			method="getNewsFeed">
+			<result name="success">home.jsp</result>
+		</action>
+		
+		<action name="increaseLikeAction" class="org.iiitb.facebook.action.UserPostAction" method="likeCount">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="addCommentAction" class="org.iiitb.facebook.action.UserPostAction" method="addComment">
+			<result type="json" name="success" />
+		</action>	
+		<action name="deletePostAction" class="org.iiitb.facebook.action.UserPostAction" method="deletePost">
+			<result type="json" name="success" />
+		</action>
+		<action name="editPostAction" class="org.iiitb.facebook.action.UserPostAction" method="editPost">
+			<result type="json" name="success" />
+		</action>
+		<action name="getAllPeople" class="org.iiitb.facebook.action.UserPostAction" method="getAllPeople">
+			<result type="json" name="success" />
+		</action>
+		<action name="editCommentAction" class="org.iiitb.facebook.action.UserPostAction" method="editComment">
+			<result type="json" name="success" />
+		</action>
+		<action name="deleteCommentAction" class="org.iiitb.facebook.action.UserPostAction" method="deleteComment">
+			<result type="json" name="success" />
+		</action>
+		
+		
+		
+		<action name="getdob" class="org.iiitb.facebook.action.dobAction" method="dob">
+			<result type="json" name="success" />
+		</action>
+		
+		
+		
+		<action name="ImageUploadAction" class="org.iiitb.facebook.action.UserImageUploadAction" method="uploadImage">
+		<interceptor-ref name="fileUpload">
+				<param name="maximumSize">50971520</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">dummy.jsp</result>
+			<result name="error">dummy.jsp</result>
+		</action>
+		
+		<action name="CoverImageUploadAction" class="org.iiitb.facebook.action.UserImageUploadAction" method="uploadCoverImage">
+		<interceptor-ref name="fileUpload">
+				<param name="maximumSize">50971520</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!--<result name="success">hello.jsp</result>
+			<result name="error">hello.jsp</result>-->
+		</action>
+		
+		<action name="ProfileImageUploadAction" class="org.iiitb.facebook.action.UserImageUploadAction" method="uploadProfileImage">
+		<interceptor-ref name="fileUpload">
+				<param name="maximumSize">50971520</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- <result name="success">hello.jsp</result>
+			<result name="error">hello.jsp</result> -->
+		</action>
+			
+		
+		<action name="viewAlbumAction" class="org.iiitb.facebook.action.FetchAlbumAction"
+			method="getAlbums">
+			<result name="success">viewalbum.jsp</result>
+		</action>
+		
+		<action name="viewImageAction" class="org.iiitb.facebook.action.ViewImageAction"
+			method="getImages">
+			<result name="success">viewallimages.jsp</result>
+		</action>
+		
+		
+		
+		<action name="forgotPassword" class="org.iiitb.facebook.action.RegistrationAction" method="forgotPassword">
+			<result name="success">forgotpassword.jsp</result>
+			<result name="error">forgotpassword.jsp</result>
+		</action>
+		
+	
+		<action name="about" class="org.iiitb.facebook.action.AboutAction" method="about">
+			<result name="success">about.jsp</result>
+			<result name="user">home.jsp</result>
+		</action>
+		
+		<action name="createAlbum" class="org.iiitb.facebook.action.CreateAlbumAction" method="createAlbum">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="educationEditSave" class="org.iiitb.facebook.action.WorkEducationAction" method="educationEditSave">
+			<result type="json" name="success" />
+		</action>
+		<action name="educationEditCancel" class="org.iiitb.facebook.action.WorkEducationAction" method="educationEditCancel">
+			<result type="json" name="success" />
+		</action>
+		<action name="deleteWorkEducation" class="org.iiitb.facebook.action.WorkEducationAction" method="deleteWorkEducation">
+			<result type="json" name="success" />
+		</action>
+		<action name="addEducation" class="org.iiitb.facebook.action.WorkEducationAction" method="addEducation">
+			<result name="success">about.jsp</result>
+			<result name="success">about.jsp</result>
+		</action>
+		<action name="addWork" class="org.iiitb.facebook.action.WorkEducationAction" method="addWork">
+			<result name="success">about.jsp</result>
+			<result name="success">about.jsp</result>
+		</action>
+		<action name="aboutEditSave" class="org.iiitb.facebook.action.AboutAction" method="aboutEditSave">
+			<result type="json" name="success" />
+		</action>
+		<action name="aboutEditCancel" class="org.iiitb.facebook.action.AboutAction" method="aboutEditCancel">
+			<result type="json" name="success" />
+		</action>
+		
+		
+		<!-- Mansi Changes -->
+		
+			<action name="searchAction" class="org.iiitb.facebook.action.GroupAction" method="getFriends">
+			<result name="success" type="json" />
+		</action>
+		<action name="addGroup" class="org.iiitb.facebook.action.GroupAction" method="execute">
+			<result name="success" type="json" />
+		</action>
+		<action name="getAllGroup" class="org.iiitb.facebook.action.GroupAction" method="getAllGroups">
+			<result name="success" type="json" />
+		</action>
+		<action name="leaveGroup" class="org.iiitb.facebook.action.GroupAction" method="leaveGroup">
+			<result name="success" type="json" />
+		</action>
+		<action name="joinGroupAgain" class="org.iiitb.facebook.action.GroupAction" method="joinGroupAgain">
+			<result name="success" type="json" />
+		</action>
+		<action name="getGroupDetailAction" class="org.iiitb.facebook.action.GroupAction" method="getGroupDetail">
+			<result name="success">leftGroup.jsp</result>
+		</action>
+				
+		
+		<!-- Mansi changes end -->
+		
+			<action name="userNewsFeedAction" class="org.iiitb.facebook.action.NewsFeedAction"
+			method="getUserNewsFeed">
+			<result name="success">profile.jsp</result>
+		</action>
+		<action name="UserPostTimelineAction" class="org.iiitb.facebook.action.UserPostAction"
+			method="postOnUserWall">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">50971520</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">profile.jsp</result>
+			<result name="error">profile.jsp</result>
+		</action>
+		
+		<action name="setting" class="org.iiitb.facebook.action.SettingAction" method="setting">
+			<result name="success">setting.jsp</result>
+			<result name="user">home.jsp</result>
+		</action>
+		
+		<action name="saveSetting" class="org.iiitb.facebook.action.SettingAction" method="saveSetting">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="cancelSetting" class="org.iiitb.facebook.action.SettingAction" method="cancelSetting">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="addFriend1" class="org.iiitb.facebook.action.FriendRequestAction" method="addFriend">
+		</action>
+		<action name="removeFriend1" class="org.iiitb.facebook.action.FriendRequestAction" method="removeFriend">
+		</action>
+		<action name="rejectFriend1" class="org.iiitb.facebook.action.FriendRequestAction" method="rejectFriend">
+		</action>
+		<action name="acceptFriend1" class="org.iiitb.facebook.action.FriendRequestAction" method="acceptFriend">
+		</action>
+		<action name="cancelFriend1" class="org.iiitb.facebook.action.FriendRequestAction" method="cancelFriend">
+		</action>
+			<action name="GroupPostAction" class="org.iiitb.facebook.action.GroupPostAction"
+			method="groupPostOnWall">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">50971520</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">leftGroup.jsp</result>
+			<result name="error">leftGroup.jsp</result>
+			<result name="input">leftGroup.jsp</result>
+		</action>
+				
+		<action name="groupIncreaseLikeAction" class="org.iiitb.facebook.action.GroupPostAction" method="groupLikeCount">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="groupAddCommentAction" class="org.iiitb.facebook.action.GroupPostAction" method="groupAddComment">
+			<result type="json" name="success" />
+		</action>	
+		<action name="groupDeletePostAction" class="org.iiitb.facebook.action.GroupPostAction" method="groupDeletePost">
+			<result type="json" name="success" />
+		</action>
+		<action name="groupEditPostAction" class="org.iiitb.facebook.action.GroupPostAction" method="groupEditPost">
+			<result type="json" name="success" />
+		</action>
+		<action name="groupEditCommentAction" class="org.iiitb.facebook.action.GroupPostAction" method="groupEditComment">
+			<result type="json" name="success" />
+		</action>
+		<action name="deleteCommentAction" class="org.iiitb.facebook.action.GroupPostAction" method="groupDeleteComment">
+			<result type="json" name="success" />
+		</action>
+		<action name="showGroupMembersAction" class="org.iiitb.facebook.action.GroupAction" method="getGroupMembers">
+			<result name="success">leftGroup.jsp</result>
+		</action>
+		
+		<action name="GroupImageUploadAction" class="org.iiitb.facebook.action.UserImageUploadAction" method="uploadGroupImage">
+		<interceptor-ref name="fileUpload">
+				<param name="maximumSize">50971520</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">leftGroup.jsp</result>
+			<result name="error">leftGroup.jsp</result>
+			<result name="input">leftGroup.jsp</result>
+		</action>
+		<action name="addMemberToGroupAction" class="org.iiitb.facebook.action.GroupAction" method="addMemberToGroup">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="searchActionToAddMember" class="org.iiitb.facebook.action.GroupAction" method="searchToAddMember">
+			<result type="json" name="success" />
+		</action>
+		<action name="groupGetAllPeople" class="org.iiitb.facebook.action.GroupPostAction" method="groupGetAllPeople">
+			<result type="json" name="success" />
+		</action>
+			<!-- action classes by Nitin -->
+		<action name="search" class="org.iiitb.facebook.action.SearchAction"
+			method="search">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+				<param name="contentType">application/json</param>
+			</interceptor-ref>
+			<result type="json" name="success"></result>
+		</action>
+		<action name="searchAll" class="org.iiitb.facebook.action.SearchAction"
+			method="searchAll">
+			<result name="success">search.jsp</result>
+		</action>
+		<action name="event" class="org.iiitb.facebook.action.EventAction"
+			method="createEvent">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+				<param name="contentType">application/json</param>
+			</interceptor-ref>
+			<result type="json" name="success"></result>
+		</action>
+		<action name="events" class="org.iiitb.facebook.action.EventAction"
+			method="displayEventPage">
+			<result name="success">eventHome.jsp</result>
+		</action>
+		<action name="eventList" class="org.iiitb.facebook.action.EventAction"
+			method="getEventsList">
+			<result name="success">upcomingEvents.jsp</result>
+		</action>
+		<action name="eventFriendList" class="org.iiitb.facebook.action.EventAction"
+			method="getFriendList">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+				<param name="contentType">application/json</param>
+			</interceptor-ref>
+			<result type="json" name="success"></result>
+		</action>
+		<action name="inviteFriends" class="org.iiitb.facebook.action.EventAction"
+			method="inviteFriends">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+				<param name="contentType">application/json</param>
+			</interceptor-ref>
+			<result type="json" name="success"></result>
+		</action>
+		<action name="respondRSVP" class="org.iiitb.facebook.action.EventAction"
+			method="respondRSPV">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+				<param name="contentType">application/json</param>
+			</interceptor-ref>
+			<result type="json" name="success"></result>
+		</action>
+		<action name="imageAction" class="org.iiitb.facebook.action.ImageAction"
+			method="execute">
+			<result name="success"></result>
+		</action>
+		<action name="eventPostAction" class="org.iiitb.facebook.action.EventPostAction"
+			method="postOnWall">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">50971520</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">eventHome.jsp</result>
+			<result name="error">eventHome.jsp</result>
+		</action>
+		
+		<action name="eventNewsFeedAction" class="org.iiitb.facebook.action.EventNewsFeedAction"
+			method="getNewsFeed">
+			<result name="success">eventHome.jsp</result>
+		</action>
+		
+		<action name="eventIncreaseLikeAction" class="org.iiitb.facebook.action.EventPostAction" method="likeCount">
+			<result type="json" name="success" />
+		</action>
+		
+		<action name="eventAddCommentAction" class="org.iiitb.facebook.action.EventPostAction" method="addComment">
+			<result type="json" name="success" />
+		</action>	
+		<action name="eventDeletePostAction" class="org.iiitb.facebook.action.EventPostAction" method="deletePost">
+			<result type="json" name="success" />
+		</action>
+		<action name="eventEditPostAction" class="org.iiitb.facebook.action.EventPostAction" method="editPost">
+			<result type="json" name="success" />
+		</action>
+		<action name="eventGetAllPeople" class="org.iiitb.facebook.action.EventPostAction" method="getAllPeople">
+			<result type="json" name="success" />
+		</action>
+		<action name="eventEditCommentAction" class="org.iiitb.facebook.action.EventPostAction" method="editComment">
+			<result type="json" name="success" />
+		</action>
+		<action name="eventDeleteCommentAction" class="org.iiitb.facebook.action.EventPostAction" method="deleteComment">
+			<result type="json" name="success" />
+		</action>
+		<action name="getInvitedStatusList" class="org.iiitb.facebook.action.EventAction"
+			method="getInvitedStatus">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+				<param name="contentType">application/json</param>
+			</interceptor-ref>
+			<result type="json" name="success"></result>
+		</action>
+		<!-- Nitin: changes end -->
+		
+		
+		<!--====================== Nupur-Setu-Dhruvik Action starts ==========================-->
+		<action name="getnotification" method="getNotifications" class="org.iiitb.facebook.action.getHeadersAction">
+		
+		    <result type="json" name="success"/>
+		</action>
+		
+		<action name="clearnotification" method="clearNotifications" class="org.iiitb.facebook.action.AllNotificationAction">
+		
+		    <result type="json" name="success"/>
+		</action>
+		
+		
+		<action name="getAllNotifications" class="org.iiitb.facebook.action.AllNotificationAction"
+			method="fetchallNotifications">
+			<result name="success">AllNotifications.jsp</result>	 	
+		</action>
+		
+		<action name="acceptRequest" method="acceptFriendRequests" class="org.iiitb.facebook.action.DisplayAllFriendsAction">
+		
+		    <result type="json" name="success"/>
+		</action>
+		
+		<action name="rejectRequest" method="rejectFriendRequests" class="org.iiitb.facebook.action.DisplayAllFriendsAction">
+		
+		    <result type="json" name="success"/>
+		</action>
+		
+		<action name="getAllFriends" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="populateFriends">
+			<result name="success">allFriends.jsp</result>
+			<result name="user">allFriends.jsp</result>	 	
+		</action>
+		
+		<action name="createmessage" class="org.iiitb.facebook.action.MessageAction"
+			method="createMessage">
+			<!-- <result name="success" type="redirectAction">
+				<param name="actionName">getConversations</param>
+				<param name="msg">true</param>
+			</result>
+			<result name="error">messages.jsp</result>	 	 -->
+		</action>
+			<action name="getConversations" class="org.iiitb.facebook.action.MessageAction"
+			method="getConversation">
+			<result name="success">messages.jsp</result>
+			<result name="error">messages.jsp</result>
+			
+		</action>
+		 <action name="getFriendsSearchBox" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="getsearchedFriends">
+		 <interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+				<param name="contentType">application/json</param>
+			</interceptor-ref>
+			<result type="json" name="success"></result>
+			
+		</action>
+		
+		 <!-- This method below loads people who are not your friend.. this helps for adding friend -->
+		<action name="getNonFriends" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="populateNonFriends">
+			<result name="success">addFriends.jsp</result>
+			<result name="user">addFriends.jsp</result>	 	
+		</action>
+		
+		<!-- This method below is used to add friend -->		
+		<action name="addFriend" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="addFriends">
+		<result name="success" type="redirectAction">
+				<param name="actionName">getNonFriends</param>
+				<param name="msg">true</param>
+			</result>
+		</action>
+		
+		<!-- This method below removes selected friend -->
+		<action name="removeFriend" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="removeFriends">
+		<!-- <result name="success" type="redirectAction">
+				<param name="actionName">getAllFriends</param>
+				<param name="msg">true</param>
+			</result> -->
+		</action>
+		
+		<!-- This method below accepts the pending friend request making both people friends-->
+		<action name="acceptFriend" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="acceptFriends">
+		<!-- <result name="success" type="redirectAction">
+				<param name="actionName">getAllFriends</param>
+				<param name="msg">true</param>
+			</result> -->
+		</action>
+		
+		<!-- This method below rejects received friend request-->
+		<action name="rejectFriend" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="rejectFriends">
+		<!-- <result name="success" type="redirectAction">
+				<param name="actionName">getAllFriends</param>
+				<param name="msg">true</param>
+			</result> -->
+		</action> 
+		
+		<!-- <action name="loadMessage" class="org.iiitb.facebook.action.MessageAction"
+			method="getChat">
+		<result name="success" type="redirectAction">
+				<param name="actionName">getConversations</param>
+				
+			</result>
+			<result name="error">profile.jsp</result>
+		</action> --> 
+		
+	 	<action name="loadMessage" class="org.iiitb.facebook.action.MessageAction"
+			method="getChat">
+			<result name="success">messages.jsp</result>
+			<result name="error">messages.jsp</result>	 	
+		</action>
+		
+		
+		
+		
+		<!--======================= Nupur-Setu-Dhruvik Action end =============================-->
+		
+		<action name="blockUser" class="org.iiitb.facebook.action.BlockFriendAction"
+			method="blockFriend">
+		</action>
+		
+		<action name="allBlockedUsers" class="org.iiitb.facebook.action.BlockFriendAction"
+			method="getAllBlockedFriendsDisplay">
+			<result name="success">BlockUsers.jsp</result>
+			<result name="error">BlockUsers.jsp</result>	 	
+		</action>
+		
+		<action name="unBlockedUsers" class="org.iiitb.facebook.action.BlockFriendAction"
+			method="unBlockFriend">
+			<result name="success">BlockUsers.jsp</result>
+			<result name="error">BlockUsers.jsp</result>	 	
+		</action>
+		
+		<action name="getSuggestFriend" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="getsuggestFriends">
+			<result name="success">suggestFriends.jsp</result>
+			<result name="error">suggestFriends.jsp</result>
+		<!-- <result name="success" type="redirectAction">
+				<param name="actionName">getAllFriends</param>
+				<param name="msg">true</param>
+			</result> -->
+		</action>
+		
+		<action name="suggestFriend" class="org.iiitb.facebook.action.DisplayAllFriendsAction"
+			method="suggestFriends">
+			<!-- <result name="success">suggestFriends.jsp</result>
+			<result name="error">suggestFriends.jsp</result> -->
+		<!-- <result name="success" type="redirectAction">
+				<param name="actionName">getAllFriends</param>
+				<param name="msg">true</param>
+			</result> -->
+		</action>
+	</package>
+</struts>

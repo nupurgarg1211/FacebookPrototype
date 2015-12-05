@@ -1,0 +1,140 @@
+.searchFreindDD {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	height: auto;
+	
+	display:none;
+}
+
+.displayBlock {
+	display: block !important;
+}
+
+.displayNone {
+	display: none !important;
+}
+
+.white-popup {
+	position: relative;
+	background: #FFF;
+	padding: 20px;
+	width: auto;
+	max-width: 500px;
+	margin: 20px auto;
+}
+
+.searchSuggestions {
+	position: absolute;
+	/* top: 38px; 
+	left: 59px;*/
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	width: 360px;
+	z-index: 9999;
+	background-color: #F6F7F8;
+	display: none;
+}
+
+.searchList {
+	list-style: none;
+	margin: 8px 5px;
+	padding: 0;
+}
+
+.searchLi {
+	overflow: auto;
+	padding: 4px;
+	margin: 4px;
+	background-color:#FFF;
+}
+
+li.searchLi a {
+	background-color: #FFF;
+}
+
+.ahoverColor {
+	background-color: #EBEEF4;
+}
+
+.searchDiv {
+	
+}
+
+.searchImg {
+	position: relative;
+	float: left;
+}
+
+.searchName {
+	display: inline-block;
+	margin-left: 22px;
+	color: #000;
+}
+
+.searchCompany {
+	display: block;
+	margin-left: 65px;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000;
+}
+
+.searchAllBox {
+	padding: 10px;
+	overflow: auto;
+	border-bottom: 1px solid #ccc;
+}
+
+.searchAllBox .searchAllDetails {
+	float: left;
+	width: 70%;
+	height: 128px;
+}
+
+.searchAllBox .searchAllDetails ul {
+	list-style: none;
+}
+
+.searchAllBox .searchAllImg {
+	float: left;
+	width: 128px;
+}
+
+.searchAllBox .searchAllImg img {
+	height: 128px;
+	width: 128px;
+}
+.groupWallpaper {
+	height: 295px;
+	border: 1px solid #CCC;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.dateBox {
+	background-color: rgba(0, 0, 0, .15);
+	border: 2px solid #fff;
+	-webkit-border-radius: 5px;
+	left: 12px;
+	padding: 7px 0 9px 0;
+	position: absolute;
+	width: 46px;
+}
+
+.modal-body {
+	padding: 20px;
+}
+
+.infoContainer {
+	position: relative;
+	top: 214px;
+	left: 0px;
+}
+
+.floatleft {
+	float: left;
+	margin-left: 80px;
+	margin-top: 24px;
+	font-size: 22px;
+}
